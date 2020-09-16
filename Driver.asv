@@ -1,0 +1,24 @@
+load_data
+Fs=512;
+L=numel(S1(:,1));
+channel=16;
+%spectData=S1(:,16);
+fAxis = 0:1/6:(Fs-1/6);
+%spectrumData = mean(abs(fft(spectData)),1);
+%figure; plot(fAxis,log10(spectrumData));
+eye_closed=eye_close(SIGNAL,Fs);
+eye_opened=eye_open(SIGNAL,Fs);
+for i=1:5
+    spectData=S1(eye_opened(2):(eye_opened(2)+6*Fs),16);
+    spectData2=S1(eye_closed(4):(eye_closed(4)+6*Fs),16);
+spectrumData = abs(fft(spectData));
+spectrumData2= abs(fft(spectData2));
+pwelch_sig=pwelch(spectData2);
+hold on;
+figure;
+plot(1:3073,log10(spectrumData));
+plot(1:3073,log10(spectrumData2));
+xlim([0 40]);
+hold off
+figure;
+plot(pwelch_sig);
