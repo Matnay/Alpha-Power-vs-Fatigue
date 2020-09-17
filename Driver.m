@@ -10,8 +10,8 @@ L=6;
 fAxis = 0:1/L:(Fs-1/L);
 
 %Functions to determine Onset of the Stimulus
-eye_closed=eye_close(SIGNAL,Fs);
-eye_opened=eye_open(SIGNAL,Fs);
+eye_closed=eye_close(S2,Fs);
+eye_opened=eye_open(S2,Fs);
 
 spectDataopen=zeros(3072,1);
 spectDataclose=zeros(3072,1);
