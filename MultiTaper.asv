@@ -13,7 +13,7 @@ fAxis = 0:1/L:(Fs-1/L);
 %Create Structures
 Create_Struct;
 %Multi Taper Parems
-tapers = [2 3];
+tapers = [15 30];
 mtmParams.Fs = Fs;
 mtmParams.tapers = tapers;
 mtmParams.trialave=0;
@@ -96,9 +96,9 @@ AlphaPower.AllSubjAvg(2,2)=(close_avg/5);
 
 figure(1);
 hold on;
-plot(mtFAxis,log10(spec_open_avg/5),'red');
+plot(mtfAxis,log10(spec_open_avg/5),'red');
 xlim([0 40]);ylim([2 6]);
-plot(mtFAxis,log10(spec_close_avg/5),'blue');
+plot(mtfAxis,log10(spec_close_avg/5),'blue');
 xlim([0 40]);ylim([2 6]);
 hold off;
 

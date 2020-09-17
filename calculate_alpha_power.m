@@ -1,8 +1,5 @@
-function power= calculate_alpha_power(SpectrumData)
-total_power=0;
-for i = 8:12
-    total_power=total_power+SpectrumData(i);
-end
-power=total_power/5;
+function power= calculate_alpha_power(SpectrumData,fAxis)
+fInterest=(fAxis>=8 & fAxis<=12);
+power=sum(SpectrumData(fInterest));
 end
 
