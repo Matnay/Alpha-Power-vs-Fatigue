@@ -12,6 +12,14 @@ fAxis = 0:1/L:(Fs-1/L);
 
 %Create Structures
 Create_Struct;
+%Multi Taper Parems
+tapers = [15 30];
+mtmParams.Fs = Fs;
+mtmParams.tapers = tapers;
+mtmParams.trialave=0;
+mtmParams.err=0;
+mtmParams.pad=-1;
+
 
 %% Subject Wise
 
@@ -36,8 +44,8 @@ for i=1:5
     spectDataclose=S1(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -69,8 +77,8 @@ for i=1:5
     spectDataclose=S2(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -102,8 +110,8 @@ for i=1:5
     spectDataclose=S3(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -135,8 +143,8 @@ for i=1:5
     spectDataclose=S4(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -168,8 +176,8 @@ for i=1:5
     spectDataclose=S5(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -201,8 +209,8 @@ for i=1:5
     spectDataclose=S6(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -234,8 +242,8 @@ for i=1:5
     spectDataclose=S7(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -267,8 +275,8 @@ for i=1:5
     spectDataclose=S8(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -300,8 +308,8 @@ for i=1:5
     spectDataclose=S9(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -333,8 +341,8 @@ for i=1:5
     spectDataclose=S10(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -366,8 +374,8 @@ for i=1:5
     spectDataclose=S11(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -399,8 +407,8 @@ for i=1:5
     spectDataclose=S12(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -432,8 +440,8 @@ for i=1:5
     spectDataclose=S13(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -465,8 +473,8 @@ for i=1:5
     spectDataclose=S14(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -498,8 +506,8 @@ for i=1:5
     spectDataclose=S15(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -531,8 +539,8 @@ for i=1:5
     spectDataclose=S16(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -564,8 +572,8 @@ for i=1:5
     spectDataclose=S17(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -597,8 +605,8 @@ for i=1:5
     spectDataclose=S18(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -630,8 +638,8 @@ for i=1:5
     spectDataclose=S19(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -663,8 +671,8 @@ for i=1:5
     spectDataclose=S20(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
     %Finding the PSD of the sampled Data
-    spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));
+    [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
+    [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
     
     open_avg=calculate_alpha_power(spectrumDataopen)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose)+close_avg;
@@ -678,4 +686,6 @@ AlphaPower.AllSubjAvg(20,2)=log10(close_avg/5);
 
 figure;
 bar(AlphaPower.AllSubjAvg);
+
+
 
