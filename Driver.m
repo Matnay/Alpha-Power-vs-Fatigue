@@ -11,12 +11,12 @@ eye_opened=eye_open(SIGNAL,Fs);
 spectDataopen=zeros(3073,1);
 spectDataclose=zeros(3073,1);
 for i=1:5
-    spectDataopen=spectData+S2(eye_opened(2):(eye_opened(2)+6*Fs),channel);
-    spectDataclose=spectData2+S2(eye_closed(4):(eye_closed(4)+6*Fs),channel);
+    spectDataopen=spectDataopen+S2(eye_opened(i):(eye_opened(i)+6*Fs),channel);
+    spectDataclose=spectDataclose+S2(eye_closed(i):(eye_closed(i)+6*Fs),channel);
 end
 
-spectrumDataopen = abs(fft(spectData/5));
-spectrumDataclose= abs(fft(spectData2/5));
+spectrumDataopen = abs(fft(spectDataopen/5));
+spectrumDataclose= abs(fft(spectDataclose/5));
 
 hold on;
 plot(1:3073,log10(spectrumDataopen),'red');
