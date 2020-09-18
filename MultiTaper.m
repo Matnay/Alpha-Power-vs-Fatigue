@@ -13,7 +13,7 @@ fAxis = 0:1/L:(Fs-1/L);
 %Create Structures
 Create_Struct;
 %Multi Taper Parems
-tapers = [2 3];
+tapers = [6 3];
 mtmParams.Fs = Fs;
 mtmParams.tapers = tapers;
 mtmParams.trialave=0;
@@ -699,5 +699,8 @@ AlphaPower.AllSubjAvg(20,2)=(close_avg/5);
 figure;
 bar(AlphaPower.AllSubjAvg);
 
+AlphaPower.AllSubjAvg(:,3)=10*(log10(AlphaPower.AllSubjAvg(:,2))-log10(AlphaPower.AllSubjAvg(:,1)));
 
+figure;
+scatter(Demographic(:,4),AlphaPower.AllSubjAvg(:,3));
 
