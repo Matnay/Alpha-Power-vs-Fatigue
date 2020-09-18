@@ -1,3 +1,4 @@
+load demographic.mat
 load subject_01.mat;
 S1=SIGNAL;
 S1(:,16)=S1(:,16)-median(S1(:,16));
