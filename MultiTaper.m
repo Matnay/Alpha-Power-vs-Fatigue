@@ -13,7 +13,7 @@ fAxis = 0:1/L:(Fs-1/L);
 %Create Structures
 Create_Struct;
 %Multi Taper Parems
-tapers = [6 3];
+tapers = [3 5];
 mtmParams.Fs = Fs;
 mtmParams.tapers = tapers;
 mtmParams.trialave=0;
@@ -80,7 +80,13 @@ for i=1:5
     %Finding the PSD of the sampled Data
     [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
     [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
-    
+%     figure(i);
+%     hold on;
+%     plot(mtFAxis,log10(spectrumDataopen),'green');
+%     plot(mtFAxis,log10(spectrumDataclose),'blue');
+%     xlim([0 40]);
+%     hold off;
+%     
     spec_open_avg=spectrumDataopen+spec_open_avg;
     spec_close_avg=spectrumDataclose+spec_close_avg;
     
@@ -94,13 +100,13 @@ end
 AlphaPower.AllSubjAvg(2,1)=(open_avg/5);
 AlphaPower.AllSubjAvg(2,2)=(close_avg/5);
 
-figure(1);
-hold on;
-plot(mtFAxis,log10(spec_open_avg/5),'red');
-xlim([0 40]);ylim([2 6]);
-plot(mtFAxis,log10(spec_close_avg/5),'blue');
-xlim([0 40]);ylim([2 6]);
-hold off;
+%  figure(1);
+%  hold on;
+%  plot(mtFAxis,log10(spec_open_avg/5),'red');
+%  xlim([0 40]);ylim([2 6]);
+%  plot(mtFAxis,log10(spec_close_avg/5),'blue');
+%  xlim([0 40]);ylim([2 6]);
+%  hold off;
 
 %% Subject 3
 
@@ -114,6 +120,7 @@ eye_opened=eye_open(S3,Fs);
 
 %Average Eye Open and close
 open_avg=0; close_avg=0;
+spec_open_avg=0; spec_close_avg=0;
 
 %The subjects data
 for i=1:5
@@ -121,9 +128,22 @@ for i=1:5
     spectDataopen=S3(eye_opened(i):(eye_opened(i)+6*Fs-1),channel);
     spectDataclose=S3(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
     
+%     spectDataopen=spectDataopen-median(spectDataopen);
+%     spectDataclose=spectDataclose-median(spectDataclose);
+    
     %Finding the PSD of the sampled Data
     [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
     [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
+    
+%     figure(i);
+%     hold on;
+%     plot(mtFAxis,log10(spectrumDataopen),'green');
+%     plot(mtFAxis,log10(spectrumDataclose),'blue');
+%     xlim([0 40]);
+%     hold off;
+    
+    spec_open_avg=spectrumDataopen+spec_open_avg;
+    spec_close_avg=spectrumDataclose+spec_close_avg;
     
     open_avg=calculate_alpha_power(spectrumDataopen,fAxis)+open_avg;
     close_avg=calculate_alpha_power(spectrumDataclose,fAxis)+close_avg;
@@ -134,6 +154,15 @@ end
 
 AlphaPower.AllSubjAvg(3,1)=(open_avg/5);
 AlphaPower.AllSubjAvg(3,2)=(close_avg/5);
+
+figure(1);
+hold on;
+plot(mtFAxis,log10(spec_open_avg/5),'red');
+xlim([0 40]);ylim([2 6]);
+plot(mtFAxis,log10(spec_close_avg/5),'blue');
+xlim([0 40]);ylim([2 6]);
+hold off;
+
 
 %% Subject 4
 
@@ -153,6 +182,7 @@ for i=1:5
     %Extracting the data
     spectDataopen=S4(eye_opened(i):(eye_opened(i)+6*Fs-1),channel);
     spectDataclose=S4(eye_closed(i):(eye_closed(i)+6*Fs-1),channel);
+    
     
     %Finding the PSD of the sampled Data
     [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
@@ -702,5 +732,5 @@ bar(AlphaPower.AllSubjAvg);
 AlphaPower.AllSubjAvg(:,3)=10*(log10(AlphaPower.AllSubjAvg(:,2))-log10(AlphaPower.AllSubjAvg(:,1)));
 
 figure;
-scatter(Demographic(:,4),AlphaPower.AllSubjAvg(:,3));
+scatter(Demographic(2:20,4),AlphaPower.AllSubjAvg(2:20,3));
 

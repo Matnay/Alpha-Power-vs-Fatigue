@@ -74,7 +74,8 @@ for i=1:5
     
     %Finding the PSD of the sampled Data
     spectrumDataopen = abs(fft(spectDataopen));
-    spectrumDataclose= abs(fft(spectDataclose));  
+    spectrumDataclose= abs(fft(spectDataclose));
+
      
     spec_open_avg=spec_open_avg+spectrumDataopen;
     spec_close_avg=spec_close_avg+spectrumDataclose;
