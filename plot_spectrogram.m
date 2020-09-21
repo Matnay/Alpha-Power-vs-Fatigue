@@ -1,5 +1,5 @@
 function plot_spectrogram(SRaw_close,SRaw_open,fspec,tspec)
-SChange = 10*(log10(SRaw_close) - log10(SRaw_open));
+SChange = 10*(log10(SRaw_close) - log10(mean(SRaw_open)));
 figure; 
 pcolor(tspec,fspec,SChange'); 
 shading interp; hold on;

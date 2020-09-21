@@ -1,4 +1,4 @@
-eve%% Setting Default Info %%
+%% Setting Default Info %%
 %Loading the Data Sets
 load_data
 %Sampling Frequency=128Hz;
@@ -96,6 +96,7 @@ plot(fAxis,log10(spec_open_avg/5),'red');
 xlim([0 40]);ylim([2 6]);
 plot(fAxis,log10(spec_close_avg/5),'blue');
 xlim([0 40]);ylim([2 6]);
+xline(20);
 hold off;
 
 
