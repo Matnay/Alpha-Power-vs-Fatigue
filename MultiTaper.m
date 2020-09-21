@@ -20,6 +20,9 @@ mtmParams.trialave=0;
 mtmParams.err=0;
 mtmParams.pad=-1;
 
+movingWin = [0.8 0.2];
+SRaw_open=zeros(27,206);
+SRaw_close=zeros(27,206);
 
 %% Subject Wise
 
@@ -80,13 +83,15 @@ for i=1:5
     %Finding the PSD of the sampled Data
     [spectrumDataopen,mtFAxis] = mtspectrumc(spectDataopen,mtmParams);
     [spectrumDataclose,mtFAxis] = mtspectrumc(spectDataclose,mtmParams);
-%     figure(i);
-%     hold on;
-%     plot(mtFAxis,log10(spectrumDataopen),'green');
-%     plot(mtFAxis,log10(spectrumDataclose),'blue');
-%     xlim([0 40]);
-%     hold off;
+    
+    %%%%%%%%%%%%%%%%%%%% Code for Spectrogram%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     [SRaw_open_temp,tspec,fspec]=mtspecgramc(spectDataopen,movingWin,mtmParams);
+%     [SRaw_close_temp,tspec,fspec]=mtspecgramc(spectDataclose,movingWin,mtmParams);
 %     
+%     SRaw_open=SRaw_open_temp+SRaw_open;
+%     SRaw_close=SRaw_close_temp+SRaw_close;
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     
     spec_open_avg=spectrumDataopen+spec_open_avg;
     spec_close_avg=spectrumDataclose+spec_close_avg;
     
@@ -99,6 +104,8 @@ end
 
 AlphaPower.AllSubjAvg(2,1)=(open_avg/5);
 AlphaPower.AllSubjAvg(2,2)=(close_avg/5);
+
+% plot_spectrogram(SRaw_close/5,SRaw_open/5,fspec,tspec);
 
 %  figure(1);
 %  hold on;
